@@ -4,6 +4,7 @@ import MarqueeSection from './components/MarqueeSection'
 import AboutSection from './components/AboutSection'
 import ServicesSection from './components/ServicesSection'
 import ProjectsSection from './components/ProjectsSection'
+import OpenSourceSection from './components/OpenSourceSection'
 import Footer from './components/Footer'
 import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
@@ -37,6 +38,7 @@ export default function App() {
         <AboutSection />
         <ServicesSection />
         <ProjectsSection />
+        <OpenSourceSection />
         <Footer />
       </main>
     </>

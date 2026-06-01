@@ -5,9 +5,9 @@ import PortraitTransition from './PortraitTransition'
 
 const NAV_LINKS = [
   { label: 'About', href: '#about' },
-  { label: 'Price', href: '#price' },
+  { label: 'Build', href: '#price' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'GitHub', href: 'https://github.com/GodBoii' },
 ]
 
 export default function HeroSection() {
@@ -51,13 +51,26 @@ export default function HeroSection() {
         delay={0.15}
         y={40}
         duration={0.7}
-        className="relative z-10 mt-6 w-full sm:mt-4 md:-mt-5"
+        className="relative z-10 mt-6 w-full px-2 sm:mt-4 md:-mt-5"
       >
-        <h1
-          className="hero-heading whitespace-nowrap font-black uppercase leading-none tracking-tight"
-          style={{ fontSize: 'clamp(3rem, 15.5vw, 17rem)' }}
-        >
-          Hi, i&apos;m prajwal
+        <h1 className="hero-heading font-black uppercase leading-[0.85] tracking-tight">
+          <span
+            className="block text-[clamp(1.5rem,5.5vw,5.5rem)] font-medium text-[#D7E2EA]/60"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            Hi, i&apos;m
+          </span>
+          <span
+            className="mt-1 block w-full whitespace-nowrap"
+            style={{ fontSize: 'clamp(3rem, 12.5vw, 14rem)' }}
+          >
+            prajwal
+          </span>
+          <span
+            className="mt-3 block text-[clamp(0.7rem,1.4vw,1.1rem)] font-light uppercase tracking-[0.35em] text-[#D7E2EA]/55 sm:mt-4"
+          >
+            Building AI Systems &amp; Agentic Infrastructure
+          </span>
         </h1>
       </FadeIn>
 
@@ -101,7 +114,7 @@ export default function HeroSection() {
           duration={0.7}
           className="max-w-[160px] text-[clamp(0.75rem,1.4vw,1.5rem)] font-light uppercase leading-snug tracking-wide text-[#D7E2EA] sm:max-w-[220px] md:max-w-[260px]"
         >
-          a 3d creator driven by crafting striking and unforgettable projects
+          AI systems &amp; agentic infrastructure — protocols, models, and tools that actually ship
         </FadeIn>
         <FadeIn delay={0.5} y={20} duration={0.7}>
           <ContactButton />

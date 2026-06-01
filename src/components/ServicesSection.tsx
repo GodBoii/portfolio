@@ -3,33 +3,33 @@ import FadeIn from './FadeIn'
 const SERVICES = [
   {
     number: '01',
-    name: '3D Modeling',
+    name: 'AI Systems & Agents',
     description:
-      'Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.',
+      'Designing and shipping agentic systems end-to-end — reasoning loops, tool use, memory, and orchestration. From solo agents to multi-agent swarms that actually coordinate.',
   },
   {
     number: '02',
-    name: 'Rendering',
+    name: 'Protocol Design',
     description:
-      'High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.',
+      'Specifying and implementing the contracts between models, tools, and services — Model Tool Protocol (mtpx), cross-system communication, and message-passing standards.',
   },
   {
     number: '03',
-    name: 'Motion Design',
+    name: 'Cognitive Architecture',
     description:
-      'Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.',
+      'Building the structural layer above raw LLMs: Polymathic Cognitive Architecture, context graphs, planning hierarchies, and self-reflective loops.',
   },
   {
     number: '04',
-    name: 'Branding',
+    name: 'AI Tooling & SDKs',
     description:
-      'Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence.',
+      'Python packages, CLIs, and developer tooling that make AI systems usable — clean APIs, sensible defaults, and batteries-included examples.',
   },
   {
     number: '05',
-    name: 'Web Design',
+    name: 'Open Source',
     description:
-      'Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.',
+      'Everything ships open. Public repos at github.com/GodBoii for AI-OS, mtpx, PCA, agentic trading, and the protocols that connect them.',
   },
 ]
 
@@ -46,7 +46,7 @@ export default function ServicesSection() {
       >
         <span className="block h-px w-8 bg-[#0C0C0C]/30 sm:w-12" />
         <span className="text-[10px] font-light uppercase tracking-[0.4em] text-[#0C0C0C]/60 sm:text-xs">
-          What i do
+          What i build
         </span>
         <span className="block h-px w-8 bg-[#0C0C0C]/30 sm:w-12" />
       </FadeIn>

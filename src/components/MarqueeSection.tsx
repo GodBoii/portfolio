@@ -55,7 +55,7 @@ export default function MarqueeSection() {
       <div className="mb-8 flex items-center gap-4 px-5 sm:mb-10 sm:px-8 md:mb-12 md:px-10">
         <span className="block h-px w-10 bg-[#D7E2EA]/30 sm:w-16" />
         <span className="text-[10px] font-light uppercase tracking-[0.4em] text-[#D7E2EA]/50 sm:text-xs">
-          Selected works · 2024 — 2026
+          Open Source · AI · Agents · Protocols · 2024 — 2026
         </span>
       </div>
 

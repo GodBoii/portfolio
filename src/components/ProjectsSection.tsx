@@ -3,32 +3,92 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import FadeIn from './FadeIn'
 import LiveProjectButton from './LiveProjectButton'
 
-const PROJECTS = [
+const GH = 'https://github.com/GodBoii'
+const PYPI_BADGE = 'https://img.shields.io/pypi/v/mtpx?style=flat-square&color=b600a8&label=PyPI'
+
+type Project = {
+  number: string
+  name: string
+  category: string
+  href: string
+  description: string
+  stack: string[]
+  accent: 'magenta' | 'violet' | 'orange'
+  badge?: string
+}
+
+const PROJECTS: Project[] = [
   {
     number: '01',
-    name: 'Nextlevel Studio',
-    category: 'Client',
-    col1Img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
-    col1Img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
-    col2Img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85',
+    name: 'AI-OS',
+    category: 'Open Source · AI',
+    href: `${GH}/AI-OS`,
+    description:
+      'A from-scratch AI operating system — the runtime that hosts models, agents, memory, and tools behind one coherent interface.',
+    stack: ['Python', 'Agents', 'Runtime'],
+    accent: 'magenta',
   },
   {
     number: '02',
-    name: 'Aura Brand Identity',
-    category: 'Personal',
-    col1Img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85',
-    col1Img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85',
-    col2Img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85',
+    name: 'mtpx',
+    category: 'PyPI · Protocol',
+    href: `${GH}/Model-Tool-protocol-`,
+    description:
+      'Model Tool Protocol — a published PyPI package (mtpx 0.1.0) defining how language models call tools, services, and other systems safely and predictably.',
+    stack: ['Python', 'Protocol', 'PyPI'],
+    accent: 'violet',
+    badge: PYPI_BADGE,
   },
   {
     number: '03',
-    name: 'Solaris Digital',
-    category: 'Client',
-    col1Img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85',
-    col1Img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85',
-    col2Img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85',
+    name: 'Polymathic Cognitive Architecture',
+    category: 'Research · Architecture',
+    href: `${GH}/Polymathic-Cognitive-Architecture-PCA-`,
+    description:
+      'A polymathic cognitive architecture — structured reasoning, multi-domain context, and self-reflective loops that go beyond single-pass LLM inference.',
+    stack: ['Architecture', 'Reasoning', 'Memory'],
+    accent: 'magenta',
+  },
+  {
+    number: '04',
+    name: 'Agentic Trading',
+    category: 'Agents · Finance',
+    href: `${GH}/agentic-trading`,
+    description:
+      'Autonomous trading agents that research, decide, and execute — built on top of the same agent runtime as AI-OS.',
+    stack: ['Agents', 'Markets', 'Automation'],
+    accent: 'orange',
+  },
+  {
+    number: '05',
+    name: 'Cross-Communication Protocol',
+    category: 'Protocol · Infra',
+    href: `${GH}/Cross-communication-protocol`,
+    description:
+      'A protocol for systems to talk to systems — a contract layer between agents, services, and external tools that doesn\'t depend on a single vendor.',
+    stack: ['Protocol', 'Messaging', 'Infra'],
+    accent: 'violet',
+  },
+  {
+    number: '06',
+    name: 'Aetheria AI',
+    category: 'Product · Web',
+    href: `${GH}/Aetheria-ai-website`,
+    description:
+      'Aetheria — the public face of the stack. A website and product surface for the AI systems built on AI-OS, mtpx, and PCA.',
+    stack: ['Web', 'Product', 'AI'],
+    accent: 'orange',
   },
 ]
+
+const ACCENT_GRADIENT: Record<Project['accent'], string> = {
+  magenta:
+    'radial-gradient(ellipse at top left, rgba(182,0,168,0.35) 0%, rgba(118,33,177,0.15) 50%, transparent 75%)',
+  violet:
+    'radial-gradient(ellipse at top right, rgba(118,33,177,0.4) 0%, rgba(70,40,180,0.15) 50%, transparent 75%)',
+  orange:
+    'radial-gradient(ellipse at bottom left, rgba(190,76,0,0.35) 0%, rgba(182,0,168,0.15) 50%, transparent 75%)',
+}
 
 const TOTAL = PROJECTS.length
 
@@ -53,7 +113,7 @@ export default function ProjectsSection() {
         >
           <span className="block h-px w-8 bg-[#D7E2EA]/30 sm:w-12" />
           <span className="text-[10px] font-light uppercase tracking-[0.4em] text-[#D7E2EA]/60 sm:text-xs">
-            Recent work
+            Shipped · Open Source
           </span>
           <span className="block h-px w-8 bg-[#D7E2EA]/30 sm:w-12" />
         </FadeIn>
@@ -63,7 +123,7 @@ export default function ProjectsSection() {
           y={40}
           className="hero-heading mb-10 text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight sm:mb-14 md:mb-20"
         >
-          Project
+          Projects
         </FadeIn>
       </div>
 
@@ -95,8 +155,6 @@ export default function ProjectsSection() {
     </section>
   )
 }
-
-type Project = (typeof PROJECTS)[number]
 
 function ProjectCard({
   project,
@@ -136,60 +194,98 @@ function ProjectCard({
         style={{ scale, y, borderRadius: radius, boxShadow: shadow }}
         className="sticky top-24 overflow-hidden border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:top-32 md:p-8"
       >
+        {/* Accent background glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-0"
+          style={{ background: ACCENT_GRADIENT[project.accent] }}
+        />
+
         {/* Top row */}
-        <div className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-end">
+        <div className="relative z-10 mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-end">
           <div className="flex items-end gap-4 md:gap-8">
-            <div className="text-[clamp(3rem,10vw,140px)] font-black leading-none text-[#D7E2EA]">
+            <div className="hero-heading text-[clamp(3rem,10vw,140px)] font-black leading-none">
               {project.number}
             </div>
             <div className="flex flex-col gap-1 pb-2 md:pb-4">
               <span className="text-xs font-light uppercase tracking-widest text-[#D7E2EA]/60 md:text-sm">
                 {project.category}
               </span>
-              <h3 className="text-[clamp(1.25rem,2.5vw,2.25rem)] font-medium uppercase leading-tight text-[#D7E2EA]">
+              <h3 className="hero-heading text-[clamp(1.5rem,3vw,2.5rem)] font-black uppercase leading-tight">
                 {project.name}
               </h3>
             </div>
           </div>
-          <LiveProjectButton className="self-end md:self-auto" />
+          <LiveProjectButton
+            href={project.href}
+            className="self-end md:self-auto"
+          />
         </div>
 
-        {/* Image grid */}
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-5 md:gap-4">
-          <div className="flex flex-col gap-3 md:col-span-2 md:gap-4">
+        {/* Body — description + terminal-style stack/code block */}
+        <div className="relative z-10 grid grid-cols-1 gap-3 md:grid-cols-5 md:gap-4">
+          <div className="md:col-span-2 flex flex-col gap-3 md:gap-4">
             <div
-              className="group/img w-full overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px]"
-              style={{ height: 'clamp(130px, 16vw, 230px)' }}
+              className="w-full overflow-hidden rounded-[24px] border border-[#D7E2EA]/12 bg-white/[0.03] p-5 sm:rounded-[32px] sm:p-6 md:rounded-[40px] md:p-8"
+              style={{ minHeight: 'clamp(220px, 28vw, 380px)' }}
             >
-              <img
-                src={project.col1Img1}
-                alt={project.name}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
-              />
+              <p className="text-[clamp(0.95rem,1.6vw,1.15rem)] font-light leading-relaxed text-[#D7E2EA]/85">
+                {project.description}
+              </p>
+              {project.badge && (
+                <div className="mt-6">
+                  <img
+                    src={project.badge}
+                    alt="mtpx on PyPI"
+                    className="h-5"
+                    loading="lazy"
+                  />
+                </div>
+              )}
             </div>
             <div
-              className="group/img w-full overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px]"
-              style={{ height: 'clamp(160px, 22vw, 340px)' }}
+              className="w-full overflow-hidden rounded-[24px] border border-[#D7E2EA]/12 bg-black/60 p-4 font-mono text-[clamp(0.7rem,1.05vw,0.95rem)] leading-relaxed text-[#D7E2EA]/80 sm:rounded-[32px] sm:p-5 md:rounded-[40px] md:p-6"
+              style={{ minHeight: 'clamp(120px, 14vw, 200px)' }}
             >
-              <img
-                src={project.col1Img2}
-                alt={project.name}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
-              />
+              <div className="mb-2 flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#b600a8]/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#7621b0]/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#D7E2EA]/30" />
+              </div>
+              <div className="text-[#b600a8]/90">$</div>
+              <div className="break-all">
+                git clone {project.href}.git
+              </div>
+              <div className="text-[#D7E2EA]/40">→ {project.name.toLowerCase()}/</div>
             </div>
           </div>
           <div
-            className="group/img overflow-hidden rounded-[24px] sm:rounded-[32px] md:rounded-[40px] md:col-span-3"
-            style={{ height: 'clamp(290px, 38vw, 570px)' }}
+            className="overflow-hidden rounded-[24px] border border-[#D7E2EA]/12 bg-white/[0.02] p-5 sm:rounded-[32px] sm:p-6 md:col-span-3 md:rounded-[40px] md:p-10"
+            style={{ minHeight: 'clamp(290px, 38vw, 570px)' }}
           >
-            <img
-              src={project.col2Img}
-              alt={project.name}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
-            />
+            <div className="mb-6 flex flex-wrap items-center gap-2">
+              {project.stack.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-[#D7E2EA]/15 bg-[#0C0C0C]/50 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-[#D7E2EA]/75 sm:text-xs"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div className="hero-heading text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-[0.95]">
+              {project.name}
+            </div>
+            <div className="mt-4 h-px w-16 bg-[#D7E2EA]/30" />
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors hover:text-[#D7E2EA]"
+            >
+              View on GitHub
+              <span className="block h-3 w-3 rotate-[-45deg] border-r border-t border-current" />
+            </a>
           </div>
         </div>
       </motion.div>

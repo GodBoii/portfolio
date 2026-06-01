@@ -3,7 +3,7 @@ import ContactButton from './ContactButton'
 import AnimatedText from './AnimatedText'
 
 const ABOUT_TEXT =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!"
+  "I design and build AI systems, agentic infrastructure, and the protocols that hold them together — from a Model Tool Protocol (mtpx) on PyPI to a Polymathic Cognitive Architecture and an AI-OS. I ship end-to-end: research, architecture, code, and tooling. If you're working on agents, LLM infra, or anything where models need to talk to tools, systems, and each other — let's build."
 
 export default function AboutSection() {
   return (
