@@ -49,13 +49,17 @@ src/
     ├── CustomCursor.tsx         # mix-blend-difference cursor
     ├── ScrollProgress.tsx       # top scroll bar
     ├── Preloader.tsx            # splash with progress counter
+    ├── PortraitTransition.tsx   # scroll-driven cross-fade between two portraits
     └── Noise.tsx                # filmic grain overlay
 
 public/
-└── Godboy.png                   # transparent portrait (background removed)
+├── portrait-1.png               # first portrait (transparent, scroll-fades out)
+└── portrait-2.png               # second portrait (transparent, scroll-fades in)
 ```
 
 ## Notes
 
-- Portrait is loaded from `/public/Godboy.png` (background already removed).
+- Portrait transition is driven by `PortraitTransition.tsx`:
+  - `public/portrait-1.png` and `public/portrait-2.png` are stacked, both with background removed via rembg.
+  - As the user scrolls past the hero (`scrollY: 0` → `90vh`), image 1 fades out + blurs + drifts up, and image 2 fades in + sharpens + rises into place.
 - External assets (motion GIFs, 3D decorative images, project images) are loaded from `motionsites.ai`, `images.higgs.ai`, and Figma-hosted URLs as specified in the design brief.

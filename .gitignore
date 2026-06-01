@@ -71,5 +71,10 @@ prajwal.png
 # Command Code tooling (auto-managed)
 .commandcode/
 
+# One-off processing scripts (kept locally only, not part of the project)
+_*.py
+_*.js
+_*.sh
+
 # Vite specific
 .vite/
