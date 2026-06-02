@@ -9,7 +9,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative flex min-h-screen w-full flex-col items-center justify-center px-5 py-20 sm:px-8 md:px-10"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center px-5 py-10 sm:px-8 sm:py-14 md:px-10"
       style={{ background: '#0C0C0C' }}
     >
       {/* Decorative 3D images */}
@@ -66,11 +66,11 @@ export default function AboutSection() {
         />
       </FadeIn>
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 -mt-8 flex flex-col items-center sm:-mt-12 md:-mt-16">
         <FadeIn
           delay={0}
           y={20}
-          className="mb-8 inline-flex items-center gap-3 sm:mb-10"
+          className="mb-6 inline-flex items-center gap-3 sm:mb-7"
         >
           <span className="block h-px w-8 bg-[#D7E2EA]/40 sm:w-12" />
           <span className="text-[10px] font-light uppercase tracking-[0.4em] text-[#D7E2EA]/60 sm:text-xs">
@@ -81,12 +81,12 @@ export default function AboutSection() {
           as="h2"
           delay={0}
           y={40}
-          className="hero-heading text-center text-[clamp(2.75rem,9vw,120px)] font-black uppercase leading-none tracking-tight"
+          className="hero-heading text-center text-[clamp(2.5rem,8vw,100px)] font-black uppercase leading-none tracking-tight"
         >
           About me
         </FadeIn>
 
-        <div className="mt-10 flex max-w-[560px] flex-col items-center gap-16 sm:mt-14 sm:gap-20 md:mt-16 md:gap-24">
+        <div className="mt-8 flex max-w-[560px] flex-col items-center gap-10 sm:mt-10 sm:gap-12 md:gap-14">
           <AnimatedText
             text={ABOUT_TEXT}
             className="text-center text-[clamp(1rem,2vw,1.35rem)] font-medium leading-relaxed text-[#D7E2EA]"
