@@ -79,6 +79,16 @@ const PROJECTS: Project[] = [
     stack: ['Web', 'Product', 'AI'],
     accent: 'orange',
   },
+  {
+    number: '07',
+    name: 'AI-OS Website',
+    category: 'Product · Web',
+    href: `${GH}/AI-OS-website`,
+    description:
+      'The website for AI-OS — landing page, docs surface, and product front door for the runtime.',
+    stack: ['Web', 'Docs', 'Product'],
+    accent: 'magenta',
+  },
 ]
 
 const ACCENT_GRADIENT: Record<Project['accent'], string> = {

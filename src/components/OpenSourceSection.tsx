@@ -22,6 +22,14 @@ const REPOS: Repo[] = [
     pinned: true,
   },
   {
+    name: 'AI-OS-website',
+    href: `${GH}/AI-OS-website`,
+    description: 'The website for AI-OS — landing page, docs surface, and product front door.',
+    language: 'TypeScript',
+    languageColor: '#3178c6',
+    pinned: true,
+  },
+  {
     name: 'Model-Tool-protocol-',
     href: `${GH}/Model-Tool-protocol-`,
     description: 'Model Tool Protocol (mtpx) — published on PyPI as mtpx 0.1.0.',
