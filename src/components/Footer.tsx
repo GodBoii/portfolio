@@ -24,13 +24,6 @@ export default function Footer() {
           y={40}
           className="mb-10 flex flex-col items-center text-center"
         >
-          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#D7E2EA]/20 bg-white/[0.03] px-4 py-1.5 text-[10px] font-light uppercase tracking-[0.3em] text-[#D7E2EA]/70 backdrop-blur-sm sm:text-xs">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            Available for work
-          </span>
           <h2 className="hero-heading text-[clamp(2.75rem,11vw,150px)] font-black uppercase leading-[0.95] tracking-tight">
             Let&apos;s build<br />the future
           </h2>

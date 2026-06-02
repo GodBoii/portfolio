@@ -51,18 +51,18 @@ export default function HeroSection() {
         delay={0.15}
         y={40}
         duration={0.7}
-        className="relative z-10 mt-6 w-full px-2 sm:mt-4 md:-mt-5"
+        className="relative z-10 mt-12 w-full px-3 sm:mt-16 md:mt-20"
       >
-        <h1 className="hero-heading font-black uppercase leading-[0.85] tracking-tight">
+        <h1 className="hero-heading font-black uppercase leading-[0.82] tracking-tight">
           <span
-            className="block text-[clamp(1.5rem,5.5vw,5.5rem)] font-medium text-[#D7E2EA]/60"
+            className="block text-[clamp(1.6rem,5.5vw,5.5rem)] font-medium text-[#D7E2EA]/60"
             style={{ letterSpacing: '-0.02em' }}
           >
             Hi, i&apos;m
           </span>
           <span
             className="mt-1 block w-full whitespace-nowrap"
-            style={{ fontSize: 'clamp(3rem, 12.5vw, 14rem)' }}
+            style={{ fontSize: 'clamp(3.5rem, 14vw, 16rem)' }}
           >
             prajwal
           </span>

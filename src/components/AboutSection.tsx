@@ -81,7 +81,7 @@ export default function AboutSection() {
           as="h2"
           delay={0}
           y={40}
-          className="hero-heading text-center text-[clamp(3rem,12vw,160px)] font-black uppercase leading-none tracking-tight"
+          className="hero-heading text-center text-[clamp(2.75rem,9vw,120px)] font-black uppercase leading-none tracking-tight"
         >
           About me
         </FadeIn>
