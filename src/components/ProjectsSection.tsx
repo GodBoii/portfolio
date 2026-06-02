@@ -6,6 +6,10 @@ import LiveProjectButton from './LiveProjectButton'
 const GH = 'https://github.com/GodBoii'
 const PYPI_BADGE = 'https://img.shields.io/pypi/v/mtpx?style=flat-square&color=b600a8&label=PyPI'
 
+type MediaItem =
+  | { type: 'video'; src: string }
+  | { type: 'image'; src: string }
+
 type Project = {
   number: string
   name: string
@@ -15,6 +19,7 @@ type Project = {
   stack: string[]
   accent: 'magenta' | 'violet' | 'orange'
   badge?: string
+  media?: MediaItem[]
 }
 
 const PROJECTS: Project[] = [
@@ -27,6 +32,7 @@ const PROJECTS: Project[] = [
       'A from-scratch AI operating system — the runtime that hosts models, agents, memory, and tools behind one coherent interface.',
     stack: ['Python', 'Agents', 'Runtime'],
     accent: 'magenta',
+    media: [{ type: 'image', src: '/aetheria-ai-chatUI.png' }],
   },
   {
     number: '02',
@@ -38,6 +44,7 @@ const PROJECTS: Project[] = [
     stack: ['Python', 'Protocol', 'PyPI'],
     accent: 'violet',
     badge: PYPI_BADGE,
+    media: [{ type: 'video', src: '/MTP-website.mp4' }],
   },
   {
     number: '03',
@@ -58,6 +65,7 @@ const PROJECTS: Project[] = [
       'Autonomous trading agents that research, decide, and execute — built on top of the same agent runtime as AI-OS.',
     stack: ['Agents', 'Markets', 'Automation'],
     accent: 'orange',
+    media: [{ type: 'video', src: '/agentic-trading.mp4' }],
   },
   {
     number: '05',
@@ -78,6 +86,7 @@ const PROJECTS: Project[] = [
       'Aetheria — the public face of the stack. A website and product surface for the AI systems built on AI-OS, mtpx, and PCA.',
     stack: ['Web', 'Product', 'AI'],
     accent: 'orange',
+    media: [{ type: 'video', src: '/aehteriai-ppt-website.mp4' }],
   },
   {
     number: '07',
@@ -88,6 +97,7 @@ const PROJECTS: Project[] = [
       'The website for AI-OS — landing page, docs surface, and product front door for the runtime.',
     stack: ['Web', 'Docs', 'Product'],
     accent: 'magenta',
+    media: [{ type: 'video', src: '/aehteriaai-website.mp4' }],
   },
 ]
 
@@ -270,32 +280,73 @@ function ProjectCard({
             </div>
           </div>
           <div
-            className="overflow-hidden rounded-[24px] border border-[#D7E2EA]/12 bg-white/[0.02] p-5 sm:rounded-[32px] sm:p-6 md:col-span-3 md:rounded-[40px] md:p-10"
+            className="relative overflow-hidden rounded-[24px] border border-[#D7E2EA]/12 bg-white/[0.02] sm:rounded-[32px] md:col-span-3 md:rounded-[40px]"
             style={{ minHeight: 'clamp(290px, 38vw, 570px)' }}
           >
-            <div className="mb-6 flex flex-wrap items-center gap-2">
-              {project.stack.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-[#D7E2EA]/15 bg-[#0C0C0C]/50 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-[#D7E2EA]/75 sm:text-xs"
+            {/* Media layer — fills the panel; falls back to the gradient if none */}
+            {project.media && project.media[0] ? (
+              <div className="absolute inset-0 h-full w-full">
+                {project.media[0].type === 'video' ? (
+                  <video
+                    key={`${project.number}-m0`}
+                    src={project.media[0].src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <img
+                    key={`${project.number}-m0`}
+                    src={project.media[0].src}
+                    alt={`${project.name} preview`}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                )}
+              </div>
+            ) : (
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at top right, rgba(118,33,177,0.25) 0%, rgba(70,40,180,0.08) 50%, transparent 75%)',
+                }}
+              />
+            )}
+
+            {/* Content overlay — sits above the media */}
+            <div className="relative z-10 flex h-full min-h-[inherit] flex-col justify-between p-5 sm:p-6 md:p-10">
+              <div className="flex flex-wrap items-center gap-2">
+                {project.stack.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-[#D7E2EA]/20 bg-[#0C0C0C]/70 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-[#D7E2EA]/85 backdrop-blur-sm sm:text-xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div>
+                <div className="hero-heading text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-[0.95] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+                  {project.name}
+                </div>
+                <div className="mt-4 h-px w-16 bg-[#D7E2EA]/40" />
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/85 transition-colors hover:text-[#D7E2EA]"
                 >
-                  {tag}
-                </span>
-              ))}
+                  View on GitHub
+                  <span className="block h-3 w-3 rotate-[-45deg] border-r border-t border-current" />
+                </a>
+              </div>
             </div>
-            <div className="hero-heading text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-[0.95]">
-              {project.name}
-            </div>
-            <div className="mt-4 h-px w-16 bg-[#D7E2EA]/30" />
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/80 transition-colors hover:text-[#D7E2EA]"
-            >
-              View on GitHub
-              <span className="block h-3 w-3 rotate-[-45deg] border-r border-t border-current" />
-            </a>
           </div>
         </div>
       </motion.div>

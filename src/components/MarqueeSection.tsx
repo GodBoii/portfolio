@@ -1,31 +1,50 @@
 import { useEffect, useRef, useState } from 'react'
 
-const ALL_GIFS = [
-  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
-  'https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif',
-  'https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif',
-  'https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif',
-  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
-  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
-  'https://motionsites.ai/assets/hero-vitara-preview-Cjz2QYyU.gif',
-  'https://motionsites.ai/assets/hero-terra-preview-BFjrCr7T.gif',
-  'https://motionsites.ai/assets/hero-skyelite-preview-DHaZIgUv.gif',
-  'https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif',
-  'https://motionsites.ai/assets/hero-designpro-preview-D8c5_een.gif',
-  'https://motionsites.ai/assets/hero-stellar-ai-preview-D3HL6bw1.gif',
-  'https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif',
-  'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
-  'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
-  'https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
-  'https://motionsites.ai/assets/hero-planet-orbit-preview-DWAP8Z1P.gif',
-  'https://motionsites.ai/assets/hero-new-era-preview-CocuDUm9.gif',
-  'https://motionsites.ai/assets/hero-wealth-preview-B70idl_u.gif',
-  'https://motionsites.ai/assets/hero-luminex-preview-CxOP7ce6.gif',
-  'https://motionsites.ai/assets/hero-celestia-preview-0yO3jXO8.gif',
+type Tile =
+  | { type: 'image'; src: string; alt: string }
+  | { type: 'video'; src: string }
+
+// Real project assets — replaces stock motionsites.ai GIFs
+const TILES: Tile[] = [
+  { type: 'video', src: '/MTP-website.mp4' },
+  { type: 'image', src: '/aetheria-ai-chatUI.png', alt: 'Aetheria AI chat UI' },
+  { type: 'video', src: '/agentic-trading.mp4' },
+  { type: 'video', src: '/aehteriaai-website.mp4' },
+  { type: 'image', src: '/aetheria-ai-login.png', alt: 'Aetheria AI login' },
+  { type: 'video', src: '/mtp-CLI.mp4' },
+  { type: 'video', src: '/aehteriai-ppt-website.mp4' },
 ]
 
-const ROW_1 = ALL_GIFS.slice(0, 11)
-const ROW_2 = ALL_GIFS.slice(11)
+// Split tiles across two rows. With 7 tiles: 4 on row 1, 3 on row 2.
+const ROW_1 = TILES.slice(0, 4)
+const ROW_2 = TILES.slice(4)
+
+const ROW_CLASSES =
+  'h-[270px] w-[420px] flex-shrink-0 rounded-2xl object-cover transition-transform duration-500'
+
+function Tile({ tile, hoverShadow }: { tile: Tile; hoverShadow: string }) {
+  if (tile.type === 'video') {
+    return (
+      <video
+        src={tile.src}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        className={`${ROW_CLASSES} hover:scale-[1.02] ${hoverShadow}`}
+      />
+    )
+  }
+  return (
+    <img
+      src={tile.src}
+      alt={tile.alt}
+      loading="lazy"
+      className={`${ROW_CLASSES} hover:scale-[1.02] ${hoverShadow}`}
+    />
+  )
+}
 
 export default function MarqueeSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -67,13 +86,11 @@ export default function MarqueeSection() {
             willChange: 'transform',
           }}
         >
-          {[...ROW_1, ...ROW_1, ...ROW_1].map((src, i) => (
-            <img
+          {[...ROW_1, ...ROW_1, ...ROW_1, ...ROW_1].map((tile, i) => (
+            <Tile
               key={`r1-${i}`}
-              src={src}
-              alt=""
-              loading="lazy"
-              className="h-[270px] w-[420px] flex-shrink-0 rounded-2xl object-cover transition-transform duration-500 hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(182,0,168,0.25)]"
+              tile={tile}
+              hoverShadow="hover:shadow-[0_20px_60px_rgba(182,0,168,0.25)]"
             />
           ))}
         </div>
@@ -85,13 +102,11 @@ export default function MarqueeSection() {
             willChange: 'transform',
           }}
         >
-          {[...ROW_2, ...ROW_2, ...ROW_2].map((src, i) => (
-            <img
+          {[...ROW_2, ...ROW_2, ...ROW_2, ...ROW_2].map((tile, i) => (
+            <Tile
               key={`r2-${i}`}
-              src={src}
-              alt=""
-              loading="lazy"
-              className="h-[270px] w-[420px] flex-shrink-0 rounded-2xl object-cover transition-transform duration-500 hover:scale-[1.02] hover:shadow-[0_20px_60px_rgba(118,33,177,0.25)]"
+              tile={tile}
+              hoverShadow="hover:shadow-[0_20px_60px_rgba(118,33,177,0.25)]"
             />
           ))}
         </div>

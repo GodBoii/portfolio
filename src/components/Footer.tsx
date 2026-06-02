@@ -1,13 +1,14 @@
 import FadeIn from './FadeIn'
 import ContactButton from './ContactButton'
-import { Mail, Instagram, Twitter, Linkedin, Github, ArrowUpRight } from 'lucide-react'
+import { Mail, Instagram, Twitter, Linkedin, Github, ArrowUpRight, AtSign } from 'lucide-react'
 
 const SOCIALS = [
   { label: 'GitHub', href: 'https://github.com/GodBoii', Icon: Github },
   { label: 'PyPI', href: 'https://pypi.org/project/mtpx/0.1.0/', Icon: ArrowUpRight },
-  { label: 'Instagram', href: '#', Icon: Instagram },
-  { label: 'Twitter', href: '#', Icon: Twitter },
-  { label: 'LinkedIn', href: '#', Icon: Linkedin },
+  { label: 'Instagram', href: 'https://www.instagram.com/7.15.4.2.15.25/', Icon: Instagram },
+  { label: 'Twitter', href: 'https://x.com/Godboiiiiii', Icon: Twitter },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/prajwal-ghadge-44a1a1242/', Icon: Linkedin },
+  { label: 'Threads', href: 'https://www.threads.com/@7.15.4.2.15.25', Icon: AtSign },
 ]
 
 export default function Footer() {
