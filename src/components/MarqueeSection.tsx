@@ -13,11 +13,14 @@ const TILES: Tile[] = [
   { type: 'image', src: '/aetheria-ai-login.png', alt: 'Aetheria AI login' },
   { type: 'video', src: '/mtp-CLI.mp4' },
   { type: 'video', src: '/aehteriai-ppt-website.mp4' },
+  { type: 'image', src: '/polycognitive-agent.png', alt: 'Polycognitive Agent' },
+  { type: 'video', src: '/polycognitive%20agent.mp4' },
+  { type: 'video', src: '/pawsitivestrides.mp4' },
 ]
 
-// Split tiles across two rows. With 7 tiles: 4 on row 1, 3 on row 2.
-const ROW_1 = TILES.slice(0, 4)
-const ROW_2 = TILES.slice(4)
+// Split tiles across two rows. With 10 tiles: 5 on row 1, 5 on row 2.
+const ROW_1 = TILES.slice(0, 5)
+const ROW_2 = TILES.slice(5)
 
 const ROW_CLASSES =
   'h-[270px] w-[420px] flex-shrink-0 rounded-2xl object-cover transition-transform duration-500'

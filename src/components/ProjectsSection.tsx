@@ -99,6 +99,28 @@ const PROJECTS: Project[] = [
     accent: 'magenta',
     media: [{ type: 'video', src: '/aehteriaai-website.mp4' }],
   },
+  {
+    number: '08',
+    name: 'Polycognitive Agent',
+    category: 'Agents · Reasoning',
+    href: `${GH}/Polycognitive-Agent`,
+    description:
+      'A polycognitive agent — multi-domain reasoning, adaptive planning, and tool use that crosses knowledge boundaries the way a polymath does.',
+    stack: ['Agents', 'Reasoning', 'Tools'],
+    accent: 'violet',
+    media: [{ type: 'image', src: '/polycognitive-agent.png' }],
+  },
+  {
+    number: '09',
+    name: 'Pawsitive Strides',
+    category: 'Product · AI',
+    href: `${GH}/Pawsitive-Strides`,
+    description:
+      'Pawsitive Strides — an AI-driven product for pet care and welfare, built with the same agent runtime that powers the rest of the stack.',
+    stack: ['Product', 'AI', 'Web'],
+    accent: 'orange',
+    media: [{ type: 'video', src: '/pawsitivestrides.mp4' }],
+  },
 ]
 
 const ACCENT_GRADIENT: Record<Project['accent'], string> = {
