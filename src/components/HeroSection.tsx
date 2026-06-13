@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import FadeIn from './FadeIn'
 import ContactButton from './ContactButton'
+import ContactModal from './ContactModal'
 import Magnet from './Magnet'
 import PortraitTransition from './PortraitTransition'
 
@@ -11,6 +13,8 @@ const NAV_LINKS = [
 ]
 
 export default function HeroSection() {
+  const [contactOpen, setContactOpen] = useState(false)
+
   return (
     <section
       className="relative flex h-screen w-full flex-col overflow-x-clip"
@@ -117,7 +121,7 @@ export default function HeroSection() {
           AI systems &amp; agentic infrastructure — protocols, models, and tools that actually ship
         </FadeIn>
         <FadeIn delay={0.5} y={20} duration={0.7}>
-          <ContactButton />
+          <ContactButton onClick={() => setContactOpen(true)} />
         </FadeIn>
       </div>
 
@@ -131,6 +135,8 @@ export default function HeroSection() {
         <span>Scroll</span>
         <span className="block h-8 w-px animate-pulse bg-[#D7E2EA]/40" />
       </FadeIn>
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </section>
   )
 }

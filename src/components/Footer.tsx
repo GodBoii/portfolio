@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import FadeIn from './FadeIn'
 import ContactButton from './ContactButton'
+import ContactModal from './ContactModal'
 import { Mail, Instagram, Twitter, Linkedin, Github, ArrowUpRight, AtSign } from 'lucide-react'
 
 const SOCIALS = [
@@ -12,6 +14,8 @@ const SOCIALS = [
 ]
 
 export default function Footer() {
+  const [contactOpen, setContactOpen] = useState(false)
+
   return (
     <footer
       id="contact"
@@ -48,7 +52,7 @@ export default function Footer() {
             </span>
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
-          <ContactButton className="mt-2" />
+          <ContactButton className="mt-2" onClick={() => setContactOpen(true)} />
         </FadeIn>
 
         {/* Divider */}
@@ -102,6 +106,8 @@ export default function Footer() {
             'radial-gradient(circle, rgba(182,0,168,0.25) 0%, rgba(118,33,177,0.12) 50%, transparent 70%)',
         }}
       />
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </footer>
   )
 }
