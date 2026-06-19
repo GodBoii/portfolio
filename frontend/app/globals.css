@@ -124,7 +124,7 @@ canvas {
   inset: 0;
   z-index: 999;
   background: var(--ink);
-  clip-path: inset(100% 0 0 0);
+  transform: translateY(100%);
 }
 
 .wrap {

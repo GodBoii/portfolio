@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Loader } from "@/components/Loader";
@@ -14,14 +14,27 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const isInitial = useRef(true);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (loading) return;
 
-    // Animate the black block out to the top
+    if (isInitial.current) {
+      isInitial.current = false;
+      // Animate the content entrance on initial page load
+      gsap.fromTo(
+        "[data-route]",
+        { y: 40, opacity: 0, clipPath: "inset(8% 0 0 0)" },
+        { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.15, ease: "expo.out", delay: 0.2 }
+      );
+      return;
+    }
+
+    // Animate the black block out to the top to reveal the new page
+    gsap.set(".route-transition", { y: "0%" });
     gsap.to(".route-transition", { 
-      clipPath: "inset(0 0 100% 0)", 
+      y: "-100%", 
       duration: 0.8, 
       ease: "power4.inOut" 
     });
@@ -52,12 +65,12 @@ export function AppShell({ children }: { children: ReactNode }) {
       event.stopPropagation();
 
       // Reset block to start from bottom
-      gsap.set(".route-transition", { clipPath: "inset(100% 0 0 0)" });
+      gsap.set(".route-transition", { y: "100%" });
       
       gsap.to("[data-route]", { y: -30, opacity: 0, duration: 0.7, ease: "power4.inOut" });
 
       gsap.to(".route-transition", {
-        clipPath: "inset(0% 0 0 0)",
+        y: "0%",
         duration: 0.7,
         ease: "power4.inOut",
         onComplete: () => {
