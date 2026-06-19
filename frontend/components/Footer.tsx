@@ -10,7 +10,7 @@ export function Footer() {
         <Link href="/studio">Studio</Link>
         <Link href="/contact">Contact</Link>
       </nav>
-      <span>©godboy 2026</span>
+      <span>©Godboy 2026</span>
       <nav className="footer-social" aria-label="Social links">
         {footerSocials.map((link) => (
           <a key={link.href} href={link.href} target="_blank" rel="noreferrer">

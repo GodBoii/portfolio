@@ -15,7 +15,7 @@ export function Navigation() {
     <header className="site-nav">
       <div className="wrap nav-grid">
         <Link href="/" className="brand" onClick={() => setOpen(false)} aria-label="Studio home">
-          godboy®
+          Godboy®
         </Link>
         <span className="nav-label">Prajwal Ghadge</span>
         <nav className={cx("nav-links", open && "is-open")} aria-label="Main navigation">

@@ -5,8 +5,6 @@ import { useState } from "react";
 import { ArrowUpRight, Play } from "lucide-react";
 import { selectedProjects } from "@/data/projects";
 import { playgroundItems, services, stats } from "@/data/site";
-import { TextReveal } from "@/components/TextReveal";
-import { HeroCanvas } from "@/components/HeroCanvas";
 import { Media } from "@/components/Media";
 import { WorkRow } from "@/components/WorkRow";
 import { FloatingPreview } from "@/components/FloatingPreview";
@@ -21,10 +19,14 @@ export default function Home() {
   return (
     <main>
       <section className="home-hero wrap">
-        <h1 className="home-title">
-          godboy
+        <h1 className="home-title" aria-label="Godboy">
+          <span className="home-letter home-letter-g" aria-hidden="true">g</span>
+          <span className="home-letter home-letter-o1" aria-hidden="true">o</span>
+          <span className="home-letter home-letter-d" aria-hidden="true">d</span>
+          <span className="home-letter home-letter-b" aria-hidden="true">b</span>
+          <span className="home-letter home-letter-o2" aria-hidden="true">o</span>
+          <span className="home-letter home-letter-y" aria-hidden="true">y</span>
         </h1>
-        <HeroCanvas />
         <button className="showreel" onClick={() => setShowreel(true)}>
           <span><Play size={18} fill="currentColor" /></span>
           Watch Showreel
@@ -58,7 +60,7 @@ export default function Home() {
 
       <section className="studio-summary wrap">
         <div>
-          <h2>Studio</h2>
+          <h2>About Me</h2>
           <p>
             Godboy is my creative engineering lab: part AI systems studio, part protocol workshop,
             part motion-obsessed frontend practice. The goal is simple: build tools that feel

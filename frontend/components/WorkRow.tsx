@@ -56,11 +56,6 @@ export function WorkRow({
         <small>{project.awards.join(" / ")}</small>
       </span>
       <span className="work-cell work-year">{project.year}</span>
-      <span className="work-overlay" aria-hidden="true">
-        {[project.number, project.title, project.client, project.type, project.year].map((item) => (
-          <span key={item}>{item}</span>
-        ))}
-      </span>
     </Link>
   );
 }

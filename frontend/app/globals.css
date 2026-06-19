@@ -224,6 +224,7 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  font-weight: bold;
 }
 
 .nav-social {
@@ -263,14 +264,73 @@ canvas {
   position: relative;
   min-height: 72vh;
   padding-top: 82px;
+  overflow: hidden;
 }
 
 .home-title {
-  font-size: 16.5vw;
-  font-weight: 760;
-  line-height: 0.75;
-  letter-spacing: -0.06em;
-  margin-left: -0.5vw;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  min-height: clamp(360px, 50vw, 660px);
+  align-items: center;
+  justify-content: center;
+  padding-top: clamp(20px, 3.5vw, 58px);
+  color: var(--ink);
+  line-height: 0.72;
+  white-space: nowrap;
+}
+
+.home-letter {
+  display: inline-block;
+  flex: 0 0 auto;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  transform-origin: center 58%;
+}
+
+.home-letter-g {
+  margin-right: -0.075em;
+  font-family: var(--font-hero-g), Impact, sans-serif;
+  font-size: clamp(180px, 25.8vw, 495px);
+  transform: translateY(0.04em) scaleX(0.92) rotate(-1.5deg);
+}
+
+.home-letter-o1 {
+  margin-right: -0.12em;
+  font-family: var(--font-hero-o), "Arial Narrow", sans-serif;
+  font-size: clamp(160px, 22vw, 418px);
+  transform: translateY(0.03em) scaleX(1.18);
+}
+
+.home-letter-d {
+  margin-right: -0.16em;
+  font-family: var(--font-hero-d), Georgia, serif;
+  font-size: clamp(210px, 29vw, 555px);
+  font-style: italic;
+  transform: translateY(-0.08em) scaleX(0.78) rotate(-2deg);
+}
+
+.home-letter-b {
+  margin-right: -0.14em;
+  font-family: var(--font-hero-b), var(--font-syne), sans-serif;
+  font-size: clamp(170px, 23.6vw, 450px);
+  font-weight: 900;
+  transform: translateY(-0.015em) scaleX(0.86);
+}
+
+.home-letter-o2 {
+  margin-right: -0.11em;
+  font-family: var(--font-hero-flourish), Georgia, serif;
+  font-size: clamp(195px, 26vw, 505px);
+  font-weight: 700;
+  transform: translateY(0.035em) scaleX(0.78) rotate(1.5deg);
+}
+
+.home-letter-y {
+  font-family: var(--font-hero-y), Impact, sans-serif;
+  font-size: clamp(175px, 24.5vw, 470px);
+  transform: translateY(0.06em) scaleX(0.88) rotate(1deg);
 }
 
 .mega,
@@ -430,40 +490,12 @@ canvas {
 }
 
 .work-row:hover {
-  color: var(--red);
+  color: var(--white);
   padding-left: 16px;
 }
 
-.work-overlay {
-  pointer-events: none;
-  position: absolute;
-  inset: 18px 0 auto 0;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 12% 31% 18% 29% 10%;
-  color: var(--white);
-}
-
-.work-overlay span {
-  width: fit-content;
-  max-width: 95%;
-  background: var(--red);
-  padding: 6px 8px;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 780ms var(--ease-out);
-}
-
-.work-row:hover .work-overlay span {
-  clip-path: inset(0 0 0 0);
-}
-
-.work-row:hover .work-overlay span:nth-child(2) { transition-delay: 45ms; }
-.work-row:hover .work-overlay span:nth-child(3) { transition-delay: 90ms; }
-.work-row:hover .work-overlay span:nth-child(4) { transition-delay: 135ms; }
-.work-row:hover .work-overlay span:nth-child(5) { transition-delay: 180ms; }
-
 .work-row:hover::before {
-  height: 5px;
+  height: 100%;
 }
 
 .work-title span {
@@ -497,7 +529,8 @@ canvas {
 .module-caption {
   font-size: 14px;
   line-height: 1.15;
-  color: var(--muted);
+  color: inherit;
+  opacity: 0.58;
 }
 
 .floating-preview {
@@ -1176,7 +1209,6 @@ canvas {
 }
 
 @media (max-width: 1100px) {
-  .home-title,
   .mega,
   .case-title,
   .work-top h1,
@@ -1281,12 +1313,47 @@ canvas {
     padding-top: 84px;
   }
 
-  .home-title,
   .mega,
   .case-title,
   .work-top h1,
   .contact-hero h1 {
     font-size: 58px;
+  }
+
+  .home-title {
+    min-height: 290px;
+    justify-content: flex-start;
+    padding-top: 28px;
+    transform: translateX(-7px);
+  }
+
+  .home-letter-g {
+    margin-right: -0.12em;
+    font-size: clamp(88px, 25vw, 118px);
+  }
+
+  .home-letter-o1 {
+    margin-right: -0.16em;
+    font-size: clamp(82px, 22vw, 106px);
+  }
+
+  .home-letter-d {
+    margin-right: -0.21em;
+    font-size: clamp(98px, 29vw, 136px);
+  }
+
+  .home-letter-b {
+    margin-right: -0.18em;
+    font-size: clamp(86px, 23vw, 112px);
+  }
+
+  .home-letter-o2 {
+    margin-right: -0.14em;
+    font-size: clamp(96px, 27vw, 128px);
+  }
+
+  .home-letter-y {
+    font-size: clamp(86px, 23vw, 112px);
   }
 
   .showreel {

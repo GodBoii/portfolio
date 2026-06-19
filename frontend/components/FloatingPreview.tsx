@@ -17,8 +17,10 @@ export function FloatingPreview({
   useEffect(() => {
     if (!ref.current) return;
     gsap.to(ref.current, {
-      x: point.x + 28,
-      y: point.y - 110,
+      x: point.x,
+      y: point.y,
+      xPercent: -50,
+      yPercent: -50,
       opacity: project ? 1 : 0,
       clipPath: project ? "inset(0% 0% 0% 0%)" : "inset(48% 0% 48% 0%)",
       duration: 0.45,
