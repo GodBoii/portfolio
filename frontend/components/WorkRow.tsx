@@ -1,6 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Project } from "@/lib/types";
 
 export function WorkRow({
@@ -12,8 +15,30 @@ export function WorkRow({
   onPreview?: (project: Project, event: React.MouseEvent) => void;
   onLeave?: () => void;
 }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (!ref.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo(
+      ref.current,
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.85,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 95%",
+        },
+      }
+    );
+  }, []);
+
   return (
     <Link
+      ref={ref}
       href={`/work/${project.slug}`}
       className="work-row"
       onMouseEnter={(event) => onPreview?.(project, event)}

@@ -26,9 +26,13 @@ body {
   min-height: 100%;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Inter Tight", "Suisse Intl", "Neue Haas Grotesk Display", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
   line-height: 1;
   overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6, .brand, .home-title, .mega, .case-title {
+  font-family: var(--font-syne), sans-serif;
 }
 
 a {
@@ -261,7 +265,7 @@ canvas {
   font-size: 142px;
   font-weight: 760;
   line-height: 0.86;
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
 }
 
 .hero-canvas {

@@ -1,4 +1,5 @@
 import { cx } from "@/lib/utils";
+import { WebGLImage } from "./WebGLImage";
 
 export function Media({
   src,
@@ -15,7 +16,7 @@ export function Media({
       {isVideo ? (
         <video src={src} autoPlay muted loop playsInline preload="metadata" />
       ) : (
-        <img src={src} alt={alt} loading="lazy" />
+        <WebGLImage src={src} alt={alt} />
       )}
     </div>
   );

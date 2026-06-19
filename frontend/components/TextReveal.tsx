@@ -2,6 +2,7 @@
 
 import { ElementType, ReactNode, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function TextReveal({
   children,
@@ -18,11 +19,22 @@ export function TextReveal({
 
   useEffect(() => {
     if (!ref.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    gsap.registerPlugin(ScrollTrigger);
     const items = ref.current.querySelectorAll("[data-line]");
     gsap.fromTo(
       items,
       { yPercent: 115 },
-      { yPercent: 0, duration: 1, delay, stagger: 0.075, ease: "expo.out" }
+      { 
+        yPercent: 0, 
+        duration: 1, 
+        delay, 
+        stagger: 0.075, 
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 90%",
+        }
+      }
     );
   }, [delay]);
 

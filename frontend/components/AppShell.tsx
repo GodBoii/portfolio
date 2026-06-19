@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Loader } from "@/components/Loader";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -18,6 +19,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [transitionNumber, setTransitionNumber] = useState(0);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     if (loading) return;
     gsap.fromTo(
       "[data-route]",
