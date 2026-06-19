@@ -209,9 +209,15 @@ canvas {
   letter-spacing: 0;
 }
 
-.nav-label,
+.nav-label {
+  color: var(--muted);
+}
+
 .nav-location {
   color: var(--muted);
+  grid-column: 5 / -1;
+  text-align: right;
+  padding-right: 18px;
 }
 
 .nav-links {
@@ -260,11 +266,11 @@ canvas {
 }
 
 .home-title {
-  font-size: 27vw;
+  font-size: 16.5vw;
   font-weight: 760;
   line-height: 0.75;
   letter-spacing: -0.06em;
-  margin-left: -1vw;
+  margin-left: -0.5vw;
 }
 
 .mega,
