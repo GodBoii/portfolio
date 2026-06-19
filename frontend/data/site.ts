@@ -1,6 +1,6 @@
 export const navLinks = [
-  { label: "work", href: "/work" },
-  { label: "studio", href: "/studio" },
+  { label: "projects", href: "/work" },
+  { label: "builds", href: "/studio" },
   { label: "contact", href: "/contact" },
 ];
 
