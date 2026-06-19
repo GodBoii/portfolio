@@ -32,11 +32,11 @@ export function AppShell({ children }: { children: ReactNode }) {
     }
 
     // Animate the black block out to the top to reveal the new page
-    gsap.set(".route-transition", { y: "0%" });
+    gsap.set(".route-transition", { scaleY: 1 });
     gsap.to(".route-transition", { 
-      y: "-100%", 
-      duration: 0.8, 
-      ease: "power4.inOut" 
+      scaleY: 0, 
+      duration: 1.0, 
+      ease: "expo.inOut" 
     });
 
     gsap.fromTo(
@@ -65,14 +65,14 @@ export function AppShell({ children }: { children: ReactNode }) {
       event.stopPropagation();
 
       // Reset block to start from bottom
-      gsap.set(".route-transition", { y: "100%" });
+      gsap.set(".route-transition", { scaleY: 0 });
       
-      gsap.to("[data-route]", { y: -30, opacity: 0, duration: 0.7, ease: "power4.inOut" });
+      gsap.to("[data-route]", { y: -30, opacity: 0, duration: 1.0, ease: "expo.inOut" });
 
       gsap.to(".route-transition", {
-        y: "0%",
-        duration: 0.7,
-        ease: "power4.inOut",
+        scaleY: 1,
+        duration: 1.0,
+        ease: "expo.inOut",
         onComplete: () => {
           router.push(url.pathname + url.search + url.hash);
           window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });

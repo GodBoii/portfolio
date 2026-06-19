@@ -124,7 +124,8 @@ canvas {
   inset: 0;
   z-index: 999;
   background: var(--ink);
-  transform: translateY(100%);
+  transform-origin: center;
+  transform: scaleY(0);
 }
 
 .wrap {

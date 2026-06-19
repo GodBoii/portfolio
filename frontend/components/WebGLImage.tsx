@@ -28,7 +28,7 @@ export function WebGLImage({ src, alt, className }: { src: string; alt: string; 
     
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(src, (tex: THREE.Texture) => {
-      uniforms.uImageRes.value.set(tex.image.width, tex.image.height);
+      uniforms.uImageRes.value.set((tex.image as HTMLImageElement).width, (tex.image as HTMLImageElement).height);
       resize();
     });
     uniforms.tDiffuse.value = texture;
