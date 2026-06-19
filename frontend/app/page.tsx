@@ -21,9 +21,9 @@ export default function Home() {
   return (
     <main>
       <section className="home-hero wrap">
-        <TextReveal as="h1" className="home-title">
-          {"godboy"}
-        </TextReveal>
+        <h1 className="home-title">
+          godboy
+        </h1>
         <HeroCanvas />
         <button className="showreel" onClick={() => setShowreel(true)}>
           <span><Play size={18} fill="currentColor" /></span>
