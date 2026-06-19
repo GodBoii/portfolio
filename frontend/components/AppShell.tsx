@@ -9,7 +9,6 @@ import { Loader } from "@/components/Loader";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { Grain } from "@/components/Grain";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -68,7 +67,6 @@ export function AppShell({ children }: { children: ReactNode }) {
       <Loader onDone={() => setLoading(false)} />
       <CustomCursor />
       <SmoothScroll disabled={loading} />
-      <Grain />
       <div className={`route-transition ${transitioning ? "is-active" : ""}`} aria-hidden="true">
         <span>{transitionNumber}</span>
       </div>
