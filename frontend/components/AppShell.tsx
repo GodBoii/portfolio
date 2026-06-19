@@ -31,19 +31,18 @@ export function AppShell({ children }: { children: ReactNode }) {
       return;
     }
 
-    // Animate the black block out to the top to reveal the new page
-    gsap.set(".route-transition", { scaleY: 1, scaleX: 1, transformOrigin: "center" });
+    // Slide black box UP to reveal new page
+    gsap.set(".route-transition", { scaleY: 1, yPercent: 0, transformOrigin: "center center", opacity: 1 });
     gsap.to(".route-transition", { 
-      scaleY: 0, 
-      scaleX: 0.7,
+      yPercent: -100,
       duration: 1.2, 
       ease: "expo.inOut" 
     });
 
     gsap.fromTo(
       "[data-route]",
-      { y: 40, scale: 0.96, opacity: 0 },
-      { y: 0, scale: 1, opacity: 1, duration: 1.2, ease: "expo.out", delay: 0.2 }
+      { y: 60, scale: 0.98, opacity: 0 },
+      { y: 0, scale: 1, opacity: 1, duration: 1.2, ease: "expo.out", delay: 0.1 }
     );
   }, [pathname, loading]);
 
@@ -65,15 +64,19 @@ export function AppShell({ children }: { children: ReactNode }) {
       event.preventDefault();
       event.stopPropagation();
 
-      // Start scaling from center and 70% width
-      gsap.set(".route-transition", { scaleY: 0, scaleX: 0.7, transformOrigin: "center" });
+      // Expand black box from center vertically
+      gsap.set(".route-transition", { 
+        yPercent: 0, // Reset any previous yPercent
+        scaleY: 0, 
+        transformOrigin: "center center",
+        opacity: 1
+      });
       
       // Animate current page slightly out
-      gsap.to("[data-route]", { y: -30, scale: 0.96, opacity: 0.2, duration: 1.2, ease: "expo.inOut" });
+      gsap.to("[data-route]", { y: -40, scale: 0.96, opacity: 0.3, duration: 1.2, ease: "expo.inOut" });
 
       gsap.to(".route-transition", {
         scaleY: 1,
-        scaleX: 1,
         duration: 1.2,
         ease: "expo.inOut",
         onComplete: () => {
