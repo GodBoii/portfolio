@@ -22,7 +22,7 @@ export default function Home() {
     <main>
       <section className="home-hero wrap">
         <TextReveal as="h1" className="home-title">
-          {"Godboy\nAI\nSystems"}
+          {"godboy"}
         </TextReveal>
         <HeroCanvas />
         <button className="showreel" onClick={() => setShowreel(true)}>
