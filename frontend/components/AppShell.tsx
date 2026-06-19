@@ -14,62 +14,70 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [transitioning, setTransitioning] = useState(false);
-  const [transitionNumber, setTransitionNumber] = useState(0);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (loading) return;
+
+    // Animate the black block out to the top
+    gsap.to(".route-transition", { 
+      clipPath: "inset(0 0 100% 0)", 
+      duration: 0.8, 
+      ease: "power4.inOut" 
+    });
+
     gsap.fromTo(
       "[data-route]",
       { y: 40, opacity: 0, clipPath: "inset(8% 0 0 0)" },
-      { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.15, ease: "expo.out" }
+      { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.15, ease: "expo.out", delay: 0.2 }
     );
   }, [pathname, loading]);
 
   useEffect(() => {
     if (loading) return;
     const onClick = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      // Allow meta clicks to open in new tab
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      
       const target = event.target as Element | null;
       const anchor = target?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!anchor || anchor.target || anchor.hasAttribute("download")) return;
+      
       const url = new URL(anchor.href);
+      // Ignore external links or same-page links (like anchors)
       if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return;
+      
+      // Stop React / Next.js from handling this click!
       event.preventDefault();
-      setTransitioning(true);
-      setTransitionNumber(0);
-      const counter = { value: 0 };
-      gsap.to("[data-route]", { y: -36, opacity: 0, clipPath: "inset(0 0 8% 0)", duration: 0.48, ease: "power4.inOut" });
-      gsap.to(counter, {
-        value: 100,
-        duration: 0.72,
-        ease: "power4.inOut",
-        onUpdate: () => setTransitionNumber(Math.round(counter.value)),
-      });
-      window.setTimeout(() => {
-        router.push(url.pathname + url.search + url.hash);
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-      }, 520);
-    };
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-  }, [loading, router]);
+      event.stopPropagation();
 
-  useEffect(() => {
-    if (!transitioning) return;
-    const timeout = window.setTimeout(() => setTransitioning(false), 780);
-    return () => window.clearTimeout(timeout);
-  }, [pathname, transitioning]);
+      // Reset block to start from bottom
+      gsap.set(".route-transition", { clipPath: "inset(100% 0 0 0)" });
+      
+      gsap.to("[data-route]", { y: -30, opacity: 0, duration: 0.7, ease: "power4.inOut" });
+
+      gsap.to(".route-transition", {
+        clipPath: "inset(0% 0 0 0)",
+        duration: 0.7,
+        ease: "power4.inOut",
+        onComplete: () => {
+          router.push(url.pathname + url.search + url.hash);
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+        },
+      });
+    };
+    
+    // Use capture phase so we intercept before React's synthetic event system
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, [loading, router]);
 
   return (
     <>
       <Loader onDone={() => setLoading(false)} />
       <CustomCursor />
       <SmoothScroll disabled={loading} />
-      <div className={`route-transition ${transitioning ? "is-active" : ""}`} aria-hidden="true">
-        <span>{transitionNumber}</span>
-      </div>
+      <div className="route-transition" aria-hidden="true"></div>
       <Navigation />
       <div data-route key={pathname}>
         {children}

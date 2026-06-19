@@ -122,26 +122,9 @@ canvas {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 850;
-  display: grid;
-  place-items: center;
-  background: var(--bg);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 360ms var(--ease-out), transform 600ms var(--ease-out);
-}
-
-.route-transition.is-active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.route-transition span {
-  height: 20px;
-  overflow: hidden;
-  color: var(--ink);
-  font-size: 14px;
-  line-height: 20px;
+  z-index: 999;
+  background: var(--ink);
+  clip-path: inset(100% 0 0 0);
 }
 
 .wrap {
@@ -201,11 +184,13 @@ canvas {
   gap: 18px;
   align-items: start;
   font-size: 14px;
+  font-weight: 700;
   line-height: 1.1;
 }
 
 .brand {
   font-size: 28px;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -224,7 +209,6 @@ canvas {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  font-weight: bold;
 }
 
 .nav-social {
