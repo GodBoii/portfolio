@@ -32,17 +32,18 @@ export function AppShell({ children }: { children: ReactNode }) {
     }
 
     // Animate the black block out to the top to reveal the new page
-    gsap.set(".route-transition", { scaleY: 1 });
+    gsap.set(".route-transition", { scaleY: 1, scaleX: 1, transformOrigin: "center" });
     gsap.to(".route-transition", { 
       scaleY: 0, 
-      duration: 1.0, 
+      scaleX: 0.7,
+      duration: 1.2, 
       ease: "expo.inOut" 
     });
 
     gsap.fromTo(
       "[data-route]",
-      { y: 40, opacity: 0, clipPath: "inset(8% 0 0 0)" },
-      { y: 0, opacity: 1, clipPath: "inset(0% 0 0 0)", duration: 1.15, ease: "expo.out", delay: 0.2 }
+      { y: 40, scale: 0.96, opacity: 0 },
+      { y: 0, scale: 1, opacity: 1, duration: 1.2, ease: "expo.out", delay: 0.2 }
     );
   }, [pathname, loading]);
 
@@ -64,14 +65,16 @@ export function AppShell({ children }: { children: ReactNode }) {
       event.preventDefault();
       event.stopPropagation();
 
-      // Reset block to start from bottom
-      gsap.set(".route-transition", { scaleY: 0 });
+      // Start scaling from center and 70% width
+      gsap.set(".route-transition", { scaleY: 0, scaleX: 0.7, transformOrigin: "center" });
       
-      gsap.to("[data-route]", { y: -30, opacity: 0, duration: 1.0, ease: "expo.inOut" });
+      // Animate current page slightly out
+      gsap.to("[data-route]", { y: -30, scale: 0.96, opacity: 0.2, duration: 1.2, ease: "expo.inOut" });
 
       gsap.to(".route-transition", {
         scaleY: 1,
-        duration: 1.0,
+        scaleX: 1,
+        duration: 1.2,
         ease: "expo.inOut",
         onComplete: () => {
           router.push(url.pathname + url.search + url.hash);
@@ -82,7 +85,29 @@ export function AppShell({ children }: { children: ReactNode }) {
     
     // Use capture phase so we intercept before React's synthetic event system
     document.addEventListener("click", onClick, { capture: true });
-    return () => document.removeEventListener("click", onClick, { capture: true });
+    
+    // Prefetch all internal links to cache pages for smooth transitions
+    const prefetchLinks = () => {
+      const links = document.querySelectorAll('a[href]');
+      links.forEach((link) => {
+        try {
+          const url = new URL((link as HTMLAnchorElement).href);
+          if (url.origin === window.location.origin) {
+            router.prefetch(url.pathname + url.search);
+          }
+        } catch (e) {
+          // ignore invalid urls
+        }
+      });
+    };
+    
+    // Run prefetch after a short delay to not block initial render
+    const prefetchTimer = setTimeout(prefetchLinks, 1000);
+
+    return () => {
+      document.removeEventListener("click", onClick, { capture: true });
+      clearTimeout(prefetchTimer);
+    };
   }, [loading, router]);
 
   return (
