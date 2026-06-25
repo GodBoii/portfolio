@@ -15,6 +15,7 @@ type Project = {
   name: string
   category: string
   href: string
+  docsHref?: string
   description: string
   stack: string[]
   accent: 'magenta' | 'violet' | 'orange'
@@ -37,11 +38,12 @@ const PROJECTS: Project[] = [
   {
     number: '02',
     name: 'mtpx',
-    category: 'PyPI · Protocol',
-    href: `${GH}/Model-Tool-protocol-`,
+    category: 'Docs · PyPI · Protocol',
+    href: `${GH}/MTP-Model-Tools-Protocol-`,
+    docsHref: 'https://mtp-model-tools-protocol.vercel.app/docs/agent-api',
     description:
-      'Model Tool Protocol — a published PyPI package (mtpx 0.1.0) defining how language models call tools, services, and other systems safely and predictably.',
-    stack: ['Python', 'Protocol', 'PyPI'],
+      'Model Tools Protocol (MTPX) — the Python package, docs, and agent API for predictable model-to-tool communication across services.',
+    stack: ['Python', 'Protocol', 'Docs', 'PyPI'],
     accent: 'violet',
     badge: PYPI_BADGE,
     media: [{ type: 'video', src: '/MTP-website.mp4' }],
@@ -258,10 +260,19 @@ function ProjectCard({
               </h3>
             </div>
           </div>
-          <LiveProjectButton
-            href={project.href}
-            className="self-end md:self-auto"
-          />
+          <div className="flex flex-wrap items-center justify-end gap-3 self-end md:self-auto">
+            {project.docsHref && (
+              <LiveProjectButton
+                href={project.docsHref}
+                label="Open docs"
+                className="px-6 sm:px-7"
+              />
+            )}
+            <LiveProjectButton
+              href={project.href}
+              className="px-6 sm:px-7"
+            />
+          </div>
         </div>
 
         {/* Body — description + terminal-style stack/code block */}
@@ -359,12 +370,12 @@ function ProjectCard({
                 </div>
                 <div className="mt-4 h-px w-16 bg-[#D7E2EA]/40" />
                 <a
-                  href={project.href}
+                  href={project.docsHref ?? project.href}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="mt-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-[#D7E2EA]/85 transition-colors hover:text-[#D7E2EA]"
                 >
-                  View on GitHub
+                  {project.docsHref ? 'Read docs' : 'View on GitHub'}
                   <span className="block h-3 w-3 rotate-[-45deg] border-r border-t border-current" />
                 </a>
               </div>

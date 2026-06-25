@@ -30,9 +30,9 @@ const REPOS: Repo[] = [
     pinned: true,
   },
   {
-    name: 'Model-Tool-protocol-',
-    href: `${GH}/Model-Tool-protocol-`,
-    description: 'Model Tool Protocol (mtpx) — published on PyPI as mtpx 0.1.0.',
+    name: 'MTP-Model-Tools-Protocol-',
+    href: `${GH}/MTP-Model-Tools-Protocol-`,
+    description: 'Model Tools Protocol (MTPX) — agent API, docs, and PyPI package for tool-using models.',
     language: 'Python',
     languageColor: '#3572A5',
     pinned: true,

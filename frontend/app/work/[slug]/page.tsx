@@ -24,7 +24,24 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <div><span>Timeframe</span><strong>{project.timeframe}</strong></div>
           <div><span>Godboy role</span><strong>{project.role}</strong></div>
           <div><span>Accolades</span><strong>{project.awards.join(" / ")}</strong></div>
-          <div><span>Link</span><strong>Visit Site</strong></div>
+          <div>
+            <span>Link</span>
+            <strong>
+              {project.docsHref ? (
+                <a href={project.docsHref} target="_blank" rel="noreferrer noopener">Docs</a>
+              ) : project.href ? (
+                <a href={project.href} target="_blank" rel="noreferrer noopener">Visit Site</a>
+              ) : (
+                "Visit Site"
+              )}
+            </strong>
+          </div>
+          {project.href && (
+            <div>
+              <span>Repo</span>
+              <strong><a href={project.href} target="_blank" rel="noreferrer noopener">GitHub</a></strong>
+            </div>
+          )}
         </div>
         <p>{project.excerpt}</p>
         <ul className="tag-list">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>

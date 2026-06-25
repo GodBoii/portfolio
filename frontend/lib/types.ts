@@ -14,6 +14,8 @@ export type Project = {
   accent: string;
   media: string;
   video?: string;
+  href?: string;
+  docsHref?: string;
 };
 
 export type CaseModule =
